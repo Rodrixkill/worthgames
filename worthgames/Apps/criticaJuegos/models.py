@@ -4,6 +4,14 @@ from django.core.files.storage import FileSystemStorage
 # Create your models here.
 fs = FileSystemStorage(location='/media/photos')
 
+class Usuario(models.Model):
+    id = models.AutoField(primary_key=True)
+    nickname = models.CharField('Nombre', max_length=200)
+    password = models.TextField('Password')
+    correo =models.EmailField('Correo', max_length=100)
+    contacto = models.CharField('Nombre', max_length=200)
+    admin = models.BooleanField('Admin', default=False)
+
 class Juego(models.Model):
     id = models.AutoField(primary_key=True)
     puntuacion=models.PositiveIntegerField('puntuacion')
@@ -13,10 +21,3 @@ class Juego(models.Model):
     created=models.ForeignKey(Usuario,on_delete=models.PROTECT)
     votantes=models.TextField('votantes')
 
-class Usuario(models.Model):
-    id = models.AutoField(primary_key=True)
-    nickname = models.CharField('Nombre', max_length=200)
-    password = models.TextField('Password')
-    correo =models.EmailField('Correo', max_length=100)
-    contacto = models.CharField('Nombre', max_length=200)
-    admin = models.BooleanField('Admin', default=False)
