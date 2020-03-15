@@ -21,3 +21,14 @@ class Juego(models.Model):
     created=models.ForeignKey(Usuario,on_delete=models.PROTECT)
     votantes=models.TextField('votantes')
 
+class Comentario(models.Model):
+    id = models.AutoField(primary_key=True)
+    juego = models.ForeignKey(Juego, null=False, blank=False, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
+    contenido = models.TextField('Contenido')
+
+class Respuesta(models.Model):
+    id = models.AutoField(primary_key=True)
+    comentario = models.ForeignKey(Comentario, null=False, blank=False, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
+    contenido = models.TextField('Contenido')

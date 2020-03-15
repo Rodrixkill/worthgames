@@ -4,3 +4,5 @@ from worthgames.Apps.criticaJuegos.models import *
 
 admin.site.register(Usuario)
 admin.site.register(Juego)
+admin.site.register(Comentario)
+admin.site.register(Respuesta)
