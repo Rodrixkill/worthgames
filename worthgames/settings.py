@@ -51,11 +51,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'worthgames.urls'
+root_to_file= os.path.dirname(os.path.realpath(__file__)) + '/static/'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ root_to_file ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'worthgames.wsgi.application'
 
@@ -118,7 +121,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.path.dirname(os.path.realpath(__file__)) +'/static/'
+
+STATICFILES_DIRS = [
+    os.path.dirname(os.path.realpath(__file__)) +'/static/'
+]
 
 MEDIA_URL = '/media/'
 

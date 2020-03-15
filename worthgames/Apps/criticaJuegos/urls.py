@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from worthgames.Apps.criticaJuegos import views
+from .views import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('<int:game_id>/game',views.game,name='game'),
     path('<int:game_id>/gameplay',views.gameplay,name='gameplay'),
     path('<int:game_id>/comentario',views.comentario,name='comentario'),
