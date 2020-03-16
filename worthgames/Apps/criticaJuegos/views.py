@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
 
 # Create your views here.
 def index(request):
@@ -22,4 +23,8 @@ def gameplay(request,game_id):
 
 def comentario(request,game_id):
     return render(request,'Comentarios.html')
+
+def allgames(request):
+    games = Juego.objects.all()
+    return render(request,'game.html', {'games' : games})
 

@@ -2,7 +2,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 
 # Create your models here.
-fs = FileSystemStorage(location='worthgames/media/photos/')
+fs = FileSystemStorage(location='worthgames/static/images/')
 
 class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
@@ -14,6 +14,7 @@ class Usuario(models.Model):
 
 class Juego(models.Model):
     id = models.AutoField(primary_key=True)
+    title = models.CharField('title', max_length=200)
     puntuacion=models.PositiveIntegerField('puntuacion')
     descripcion=models.TextField('descripcion')
     linksGameplay= models.TextField('links')

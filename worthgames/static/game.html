@@ -66,34 +66,38 @@
       </div>
     </div>
   </nav>
-
+ 
   <div class="container">  
+ {% for game in games %}
     <div class="row">
     <div class="card float-right">
         <div class="row">
             <div class="col-md-3">
-                <img class="d-block w-100" src="images/juego.jpg" alt="">
+                <img class="d-block w-100" src="{{game.image.path}}" alt="">
             </div>
             <div class="col-md-7">
                 <div class="card-block">
                     <div class="card-header">
                         <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
+			    {% if game.puntuacion >= 5 %}
                             <div class="puntaje-good">
-                                <a style="color: white; font-size: 40px;">10</a>
+			    {% else %}     
+                            <div class="puntaje-bad">
+                            {% endif %}
+                            
+                                <a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
                             </div>
                             &nbsp;
                             <button  type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i></button>
                             &nbsp;
                             <button  type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
                         </div>
-                        <h2 class="card-title">World of Warcraft</h2>
+                        <h2 class="card-title">{{ game.title }}</h2>
                     </div>
                 
                 <!--<h4 class="card-title">Small card</h4> -->
                 <p style="margin-top: 30px;">
-                    World of Warcraft: Classic es un homenaje a sus quince años de vida, un producto que el pueblo llevaba pidiendo desde hace un lustro pero que la empresa californiana se cerraba en banda a ofrecer. Es la vuelta a aquellos recuerdos que nuestro cerebro se resigna a borrar incluso ahora que la mayoría de los que jugamos al original somos padres de familia. Una celebración por todo lo alto en la que se quiere demostrar que un videojuego como este puede seguir siendo válido más de una década después.
-
-                    Blizzard ha hecho uso de la ingeniería inversa para meter toda la base de datos del videojuego base así como el material gráfico en el cliente de World of Warcraft: Legión haciendo que este sea prácticamente igual al original. Datos, que por cierto, proceden del parche 1.12 de nombre Drums of War. Esto significa que la propuesta de Classic no es tal si no que se basa en la última actualización que recibió el juego antes del lanzamiento de la expansión The Burning Crusade.    
+                   {{ game.descripcion }}
                 </p>
                 <br>
                 <i class="fa fa-thumbs-up fa-2x"></i>
@@ -105,9 +109,12 @@
             </div>
         </div>
     </div>
+    <br />
     </div>
+ {% endfor %}
     <!-- row -->
 </div>
+
 <!-- /.container -->
 <!-- Footer -->
 
