@@ -33,88 +33,90 @@
 <!--===============================================================================================-->
 </head>
 <body>
-    <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">	
-	<img src="{% static 'images/logo.png' %}" alt="Descripción de esta maravillosa imagen">
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar">
-              <span class="input-group-btn">
-                 <button class="btn btn-secondary" type="button" >
-			<img src="{% static 'images/icons/Search.svg' %}" alt="" width="30" height="20" title="Bootstrap">
-		 </button>
-              </span>
-            </div>
-          </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Juegos </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="Gameplays.html">Gameplays </a>
-		<span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Comentarios.html">Comentarios </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
- 
-  <div class="container">  
- {% for game in games %}
-    <div class="row">
-    <div class="card float-right">
-        <div class="row">
-            <div class="col-md-3">
-                <img class="d-block w-100" src="{{game.image.path}}" alt="">
-            </div>
-            <div class="col-md-7">
-                <div class="card-block">
-                    <div class="card-header">
-                        <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
-			    {% if game.puntuacion >= 5 %}
-                            <div class="puntaje-good">
-			    {% else %}     
-                            <div class="puntaje-bad">
-                            {% endif %}
-                            
-                                <a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
-                            </div>
-                            &nbsp;
-                            <button  type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i></button>
-                            &nbsp;
-                            <button  type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
-                        </div>
-                        <h2 class="card-title">{{ game.title }}</h2>
-                    </div>
-                
-                <!--<h4 class="card-title">Small card</h4> -->
-                <p style="margin-top: 30px;">
-                   {{ game.descripcion }}
-                </p>
-                <br>
-                <i class="fa fa-thumbs-up fa-2x"></i>
-                &nbsp;
-                <i class="fa fa-thumbs-down fa-2x"></i>
-                <a href="#" class="btn btn-primary btn-sm float-right">Ir a los comentarios</a>
+    <div class="allButFooter">
+        <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+        <img src="{% static 'images/logo.png' %}" alt="Descripción de esta maravillosa imagen">
+              <div class="card-body">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Buscar">
+                  <span class="input-group-btn">
+                     <button class="btn btn-secondary" type="button" >
+                <img src="{% static 'images/icons/Search.svg' %}" alt="" width="30" height="20" title="Bootstrap">
+             </button>
+                  </span>
                 </div>
+              </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Juegos </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="Gameplays.html">Gameplays </a>
+            <span class="sr-only">(current)</span>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Comentarios.html">Comentarios </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
+      <div class="container">
+     {% for game in games %}
+        <div class="row">
+        <div class="card float-right">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="d-block w-100" src="{{game.image.path}}" alt="">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-block">
+                        <div class="card-header">
+                            <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
+                    {% if game.puntuacion >= 5 %}
+                                <div class="puntaje-good">
+                    {% else %}
+                                <div class="puntaje-bad">
+                                {% endif %}
+
+                                    <a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
+                                </div>
+                                &nbsp;
+                                <button  type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i></button>
+                                &nbsp;
+                                <button  type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+                            </div>
+                            <h2 class="card-title">{{ game.title }}</h2>
+                        </div>
+
+                    <!--<h4 class="card-title">Small card</h4> -->
+                    <p style="margin-top: 30px;">
+                       {{ game.descripcion }}
+                    </p>
+                    <br>
+                    <i class="fa fa-thumbs-up fa-2x"></i>
+                    &nbsp;
+                    <i class="fa fa-thumbs-down fa-2x"></i>
+                    <a href="#" class="btn btn-primary btn-sm float-right">Ir a los comentarios</a>
+                    </div>
+
+                </div>
             </div>
         </div>
+        <br />
+        </div>
+     {% endfor %}
+        <!-- row -->
     </div>
-    <br />
-    </div>
- {% endfor %}
-    <!-- row -->
-</div>
-
+  </div>
+ </div>
 <!-- /.container -->
 <!-- Footer -->
 
