@@ -1,20 +1,40 @@
 ﻿<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
-
+  <title>Comments</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Comentarios</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/blog-home.css" rel="stylesheet">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css' %}">
+    <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+<!--===============================================================================================-->
 
 </head>
 
@@ -23,13 +43,13 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">	
-	<img src="images/logo.png" alt="Descripción de esta maravillosa imagen">
+	<img src="{% static 'images/logo.png' %}" alt="Descripción de esta maravillosa imagen">
           <div class="card-body">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Buscar">
               <span class="input-group-btn">
                  <button class="btn btn-secondary" type="button" >
-			<img src="images/icons/Search.svg" alt="" width="30" height="20" title="Bootstrap">
+			<img src="{% static 'images/icons/search.svg' %}" alt="" width="30" height="20" title="Bootstrap">
 		 </button>
               </span>
             </div>
@@ -75,10 +95,10 @@
 		</div>
 		<h1></h1>
 		<span class="float-right">
-		<button id "image-logo" class="btn btn-ligh" type="button" padding-right>
+		<button id="image-logo6" class="btn btn-ligh" type="button" padding-right>
 			<h6 >Cancelar</h6>
 		</button>
-		<button id "image-logo" class="btn btn-lighy" type="button" padding-right>
+		<button id="image-logo7" class="btn btn-lighy" type="button" padding-right>
 			<h6 style="color:#1E90FF">Comentar</h6>
 		</button>
 		</span>
@@ -91,10 +111,10 @@
             <strong class="card-title">Usuario1</strong>
 		<span class="float-right">
 		<button class="btn btn-light" type="button">
-			<img src="images/icons/Trash.svg" alt="" width="30" height="25" title="Bootstrap">
+			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
 		<button class="btn btn-light" type="button" >
-			<img src="images/icons/Pencil.svg" alt="" width="30" height="25" title="Bootstrap">
+			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
 		</span>
 	<br></br>
@@ -102,7 +122,7 @@
 	Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
 	  </p>
 		<span class="float-right">
-		<button id "image-logo" class="btn btn-dark" type="button" padding-right>
+		<button id=image-logo" class="btn btn-dark" type="button" padding-right>
 			Responder
 		</button>
 		</span>
@@ -117,10 +137,10 @@
             <strong class="card-title">Usuario2</strong>
 		<span class="float-right">
 		<button class="btn btn-light" type="button">
-			<img src="images/icons/Trash.svg" alt="" width="30" height="25" title="Bootstrap">
+			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
-		<button id "image-logo" class="btn btn-light" type="button" padding-right>
-			<img src="images/icons/Pencil.svg" alt="" width="30" height="25" title="Bootstrap">
+		<button id="image-logo" class="btn btn-light" type="button" padding-right>
+			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
 		</span>
           <br></br>
@@ -128,7 +148,7 @@
 	   Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
 	  </p>
 		<span class="float-right">
-		<button id "image-logo" class="btn btn-dark" type="button" padding-right>
+		<button id="image-logo2" class="btn btn-dark" type="button" padding-right>
 			Responder
 		</button>
 		</span>
@@ -144,10 +164,10 @@
             <strong class="card-title">Usuario3</strong>
 		<span class="float-right">
 		<button class="btn btn-light" type="button">
-			<img src="images/icons/Trash.svg" alt="" width="30" height="25" title="Bootstrap">
+			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
-		<button id "image-logo" class="btn btn-light" type="button" padding-right>
-			<img src="images/icons/Pencil.svg" alt="" width="30" height="25" title="Bootstrap">
+		<button  class="btn btn-light" type="button" padding-right>
+			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
 		</span>
           <br></br>
@@ -156,7 +176,7 @@
 		Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
 	  </p>
 		<span class="float-right">
-		<button id "image-logo" class="btn btn-dark" type="button" padding-right>
+		<button id="image-logo4" class="btn btn-dark" type="button" padding-right>
 			Responder
 		</button>
 		</span>
@@ -169,10 +189,10 @@
             <strong class="card-title">Usuario1</strong>
 		<span class="float-right">
 		<button class="btn btn-light" type="button">
-			<img src="images/icons/Trash.svg" alt="" width="30" height="25" title="Bootstrap">
+			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
 		<button class="btn btn-light" type="button" >
-			<img src="images/icons/Pencil.svg" alt="" width="30" height="25" title="Bootstrap">
+			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
 		</span>
 	<br></br>
@@ -180,7 +200,7 @@
 		 Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
 	  </p>
 		<span class="float-right">
-		<button id "image-logo" class="btn btn-dark" type="button" padding-right>
+		<button id="image-logo3" class="btn btn-dark" type="button" padding-right>
 			Responder
 		</button>
 		</span>
@@ -216,9 +236,9 @@
     <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 
