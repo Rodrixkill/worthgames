@@ -69,7 +69,7 @@
       </nav>
 
       <div class="container">
-     {% for game in games %}
+     
         <div class="row">
         <div class="card float-right">
             <div class="row">
@@ -93,7 +93,7 @@
                                 &nbsp;
                                 <button  type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
                             </div>
-                            <a href="{% url 'game' game_id=game.id %}"><h2 class="card-title">{{game.title}}</h2></a>
+                            <h2 class="card-title">{{ game.title }}</h2>
                         </div>
 
                     <!--<h4 class="card-title">Small card</h4> -->
@@ -104,6 +104,9 @@
                     <i class="fa fa-thumbs-up fa-2x"></i>
                     &nbsp;
                     <i class="fa fa-thumbs-down fa-2x"></i>
+                    <a href="{% url 'comentario' game_id=game.id %}" class="btn btn-outline-dark float-right">Comentarios</a>
+		    &nbsp;
+		    <a href="{% url 'gameplay' game_id=game.id %}" class="btn btn-outline-dark float-right">Gameplays </a>
                     </div>
 
                 </div>
@@ -111,7 +114,6 @@
         </div>
         <br />
         </div>
-     {% endfor %}
         <!-- row -->
     </div>
   </div>

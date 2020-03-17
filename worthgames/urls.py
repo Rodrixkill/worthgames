@@ -19,9 +19,9 @@ from worthgames.Apps.criticaJuegos import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('<int:game_id>/game',views.game,name='game'),
-    path('<int:game_id>/gameplay',views.gameplay,name='gameplay'),
-    path('<int:game_id>/comentario',views.comentario,name='comentario'),
+    path('game/<game_id>/',views.game,name='game'),
+    path('gameplay/<game_id>/',views.gameplay,name='gameplay'),
+    path('comentario/<game_id>/',views.comentario,name='comentario'),
     path('register/',views.register,name='register'),
     path('login/',views.login,name='login'),
     path('form/',views.form,name='form'),
