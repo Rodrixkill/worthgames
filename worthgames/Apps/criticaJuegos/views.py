@@ -21,17 +21,22 @@ def game(request,game_id):
 
 def gameplay(request,game_id):
     obj = Juego.objects.get(pk=game_id)
-    return render(request,'Gameplays.html',{'game': obj })
+    string = obj.linksGameplay.split(',')
+    return render(request,'Gameplays.html',{'game': obj,'links':string })
 
 def comentario(request,game_id):
     obj = Juego.objects.get(pk=game_id)
     comentarios = Comentario.objects.filter(juego = game_id).values('id')
+    names = Comentario.objects.filter(juego = game_id).values('usuario')
     conexion=[]
+    usernames=[]
     for i in comentarios:
         nombre=i['id']
         respuestas=Respuesta.objects.filter(comentario = nombre)
+        print(respuestas)
+        #usuarios=Usuario.objects.filter(id=nomb).values('Nombre')
         conexion.append((i['id'],respuestas))
-
+    print(conexion[0][0])
     coments = Comentario.objects.filter(juego = game_id)
     return render(request,'Comentarios.html',{'game':obj,'conexion':conexion,'comentarios':coments})
 

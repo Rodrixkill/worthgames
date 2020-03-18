@@ -85,53 +85,23 @@
 	</center>
 	
 	<!-- Blog Post -->
+        {% for link in links %}
         <div class="card mb-4">
           <div class="embed-responsive embed-responsive-16by9">
-  		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5og0RJRpy9I?rel=0" allowfullscreen></iframe>
+  		<iframe class="embed-responsive-item" src="{{link}}" allowfullscreen></iframe>
 	  </div>
-          <div class="card-body">
-            <h3 class="card-title">THE EKKO EXPERIENCE</h3>
-            <p class="card-text">
-	  Gameplay del jugador profesional del videojuego League of Legends y streamer de tiempo completo en Twitch que se convirtió en uno de los transmisores más populares del mundo, sobrepasando los 2.5 millones de seguidores y contando. Quedó entre las estrellas Top 10 de Twitch.  
-	  </p>
-          </div>
         </div>
+        {% endfor %}
 
-	<!-- Blog Post -->
-        <div class="card mb-4">
-          <div class="embed-responsive embed-responsive-16by9">
-  		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/c95JR3gYECY?rel=0" allowfullscreen></iframe>
-	  </div>
-          <div class="card-body">
-            <h3 class="card-title">100% BEST SKIN IN LEAGUE!!</h3>
-            <p class="card-text">
-	    Redmerci jugando con la nueva skin de Talon-RPG Talon Blackwood 
-	    </p>
-          </div>
-         </div>
-  
-
-       <!-- Blog Post -->
-        <div class="card mb-4">
-          <div class="embed-responsive embed-responsive-16by9">
-  		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oZcJ-cR0QUQ?rel=0" allowfullscreen></iframe>
-	  </div>
-          <div class="card-body">
-            <h3 class="card-title">SWEET LEE SIN KICK FLASH COMBOS!</h3>
-            <p class="card-text">
-		Gripex jugando a Lee sin 
-	    </p>
-          </div>
-          </div>
-        </div>
+      </div>
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-        <!--League of Legends -->
+        <!--Juego -->
         <div class="card my-4">
-          <h5 class="card-header">League of Legends</h5>
+          <h5 class="card-header">{{game.title}}</h5>
           <div class="card-body">
-            League of Legends es un videojuego del género multijugador de arena de batalla en línea y deporte electrónico el cual fue desarrollado por Riot Games para Microsoft Windows y OS X. En un principio los servidores estaban alojados en la empresa GOA y fue vendida a la empresa china Tencent Holdings Limited.
+            {{game.descripcion}}
           </div>
         </div>
 

@@ -64,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="Gameplays.html">Gameplayes </a>
+            <a class="nav-link" href="Gameplays.html">Gameplays </a>
 		<span class="sr-only">(current)</span>
           </li>
           <li class="nav-item active">
@@ -104,11 +104,12 @@
 		</span>
           </div>
         </div>
+	{% for comentario in comentarios %}
 
-	<!-- Blog Post -->
+	<!-- Preguntas -->
         <div class="card mb-2" style="width: 46rem;">
           <div class="card-body">
-            <strong class="card-title">Usuario1</strong>
+            <strong class="card-title">{{comentario.usuario}}</strong>
 		<span class="float-right">
 		<button class="btn btn-light" type="button">
 			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
@@ -119,7 +120,7 @@
 		</span>
 	<br></br>
            <p class="card-text">
-	Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
+	   {{comentario.contenido}}
 	  </p>
 		<span class="float-right">
 		<button id=image-logo" class="btn btn-dark" type="button" padding-right>
@@ -128,13 +129,15 @@
 		</span>
           </div>
         </div>
-	
-	<!-- Blog Post -->
+	{% for con in conexion %}
+	<!-- Respuestas -->
+        {% ifequal con.0 comentario.id %}
+        {% for resp in con.1 %}
 	<span class="float-right">
         <div class="card mb-2" style="width: 42rem;">
           <div class="card-body" >
 	  
-            <strong class="card-title">Usuario2</strong>
+            <strong class="card-title"> {{resp.usuario}}</strong>
 		<span class="float-right">
 		<button class="btn btn-light" type="button">
 			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
@@ -145,7 +148,7 @@
 		</span>
           <br></br>
            <p class="card-text" >
-	   Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
+	   {{resp.contenido}}
 	  </p>
 		<span class="float-right">
 		<button id="image-logo2" class="btn btn-dark" type="button" padding-right>
@@ -155,68 +158,20 @@
           </div>
         </div>
 	</span>
+        {% endfor %}
+        {% endifequal %}
+	{% endfor %}
+	{% endfor %}
 	
-	<!-- Blog Post -->
-	<span class="float-right">
-        <div class="card mb-2" style="width: 42rem;">
-          <div class="card-body" >
-	  
-            <strong class="card-title">Usuario3</strong>
-		<span class="float-right">
-		<button class="btn btn-light" type="button">
-			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
-		</button>
-		<button  class="btn btn-light" type="button" padding-right>
-			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
-		</button>
-		</span>
-          <br></br>
-          <p class="card-text" >
-	  	<u style="color:#FF0000">@Usuario2</u>
-		Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
-	  </p>
-		<span class="float-right">
-		<button id="image-logo4" class="btn btn-dark" type="button" padding-right>
-			Responder
-		</button>
-		</span>
-          </div>
-        </div>
-	</span>	
-	<!-- Blog Post -->
-        <div class="card mb-2" style="width: 46rem;">
-          <div class="card-body">
-            <strong class="card-title">Usuario1</strong>
-		<span class="float-right">
-		<button class="btn btn-light" type="button">
-			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
-		</button>
-		<button class="btn btn-light" type="button" >
-			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
-		</button>
-		</span>
-	<br></br>
-           <p class="card-text">
-		 Recuerdo cuando jugue por primera vez este hermoso juego, realmente me gusto pero no me gustaba morir y morir, escuchaba que todos hacian asesinatos dobles y triples y yo mataba a alguien y porque le hacia ks, se sentia feo pero aun asi segui jugando y esto me motivo a querer ser buen jugador, buscaba guias y leia las build de cada campeon, asi sabia que debia usar, fui buscando el significado de ap, ad, tank, todo.
-	  </p>
-		<span class="float-right">
-		<button id="image-logo3" class="btn btn-dark" type="button" padding-right>
-			Responder
-		</button>
-		</span>
-          </div>
-        </div>	
-
-	</div>
 	
-
+      </div>
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-        <!--League of Legends -->
+        <!--Juego -->
         <div class="card my-4">
-          <h5 class="card-header">League of Legends</h5>
+          <h5 class="card-header">{{game.title}}</h5>
           <div class="card-body">
-            League of Legends es un videojuego del género multijugador de arena de batalla en línea y deporte electrónico el cual fue desarrollado por Riot Games para Microsoft Windows y OS X. En un principio los servidores estaban alojados en la empresa GOA y fue vendida a la empresa china Tencent Holdings Limited.
+            {{game.descripcion}}
           </div>
         </div>
 
