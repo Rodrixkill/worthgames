@@ -47,14 +47,18 @@
     <div class="container">	
 	<img src="{% static 'images/logo.png' %}" alt="Descripción de esta maravillosa imagen">
           <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar">
-              <span class="input-group-btn">
-                 <button class="btn btn-secondary" type="button">
-		<img src="{% static 'images/icons/search.svg' %}" alt="" width="30" height="20" title="Bootstrap">
-		 </button>
-              </span>
-            </div>
+            <form action="{% url 'allgames' %}" method="get">
+                <div class="input-group">
+                 
+                  <input type="text" class="form-control" placeholder="Buscar" name="q" id="id_q">
+                  <span class="input-group-btn">
+                     <button class="btn btn-secondary" type="submit" >
+                         <img src="{% static 'images/icons/Search.svg' %}" alt="" width="30" height="20" title="Bootstrap">
+             	     </button>
+                 
+                  </span>
+                </div>
+               </form>
           </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

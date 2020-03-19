@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db.models import Q
 from .models import *
 
 # Create your views here.
@@ -41,6 +42,30 @@ def comentario(request,game_id):
     return render(request,'Comentarios.html',{'game':obj,'conexion':conexion,'comentarios':coments})
 
 def allgames(request):
-    games = Juego.objects.all()
-    return render(request,'game.html', {'games' : games})
+    games = list()
+    query = ""
+    search=""
+    if request.GET:
+        query = request.GET['q']
+        search = str(query)
+    if search == "":
+        games = Juego.objects.all()
+    else:
+        games = search1(search)
+        
+    return render(request,'game.html', {'games' : games,'query':query})
+
+def search1(query=None):
+    queryset = []
+    queries = query.split(" ")
+    for q in queries:
+        posts = Juego.objects.filter(
+                Q(title__icontains=q)
+            ).distinct()
+        for post in posts:
+            queryset.append(post)
+    return list(set(queryset))
+
+
+
 
