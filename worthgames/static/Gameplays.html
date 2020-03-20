@@ -66,14 +66,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="game.html">Juegos </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Gameplayes </a>
-		<span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Comentarios.html">Comentarios </a>
+            <a class="nav-link" href="{% url 'allgames' %}">Juegos </a>
           </li>
             {% if user.is_authenticated %}
                 <li class="nav-item active" ><a  class="nav-link" >User: {{ user.get_username }}</a></li>
