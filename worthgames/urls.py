@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from worthgames.Apps.criticaJuegos import views
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,6 @@ urlpatterns = [
     path('login/',views.login,name='login'),
     path('form/',views.form,name='form'),
     path('allgames/',views.allgames,name='allgames'),
+    path('accounts/', include('django.contrib.auth.urls')),
+
 ]

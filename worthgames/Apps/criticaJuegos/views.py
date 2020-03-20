@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -12,19 +13,19 @@ def register(request):
 
 def login(request):
     return render(request,'login.html')
-
+@login_required
 def form(request):
     return render(request,'FormGame.html')
-
+@login_required
 def game(request,game_id):
     obj = Juego.objects.get(pk=game_id)
     return render(request,'game2.html',{'game': obj })
-
+@login_required
 def gameplay(request,game_id):
     obj = Juego.objects.get(pk=game_id)
     string = obj.linksGameplay.split(',')
     return render(request,'Gameplays.html',{'game': obj,'links':string })
-
+@login_required
 def comentario(request,game_id):
     obj = Juego.objects.get(pk=game_id)
     comentarios = Comentario.objects.filter(juego = game_id).values('id')
@@ -40,7 +41,7 @@ def comentario(request,game_id):
     print(conexion[0][0])
     coments = Comentario.objects.filter(juego = game_id)
     return render(request,'Comentarios.html',{'game':obj,'conexion':conexion,'comentarios':coments})
-
+@login_required
 def allgames(request):
     games = list()
     query = ""

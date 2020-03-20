@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import views
+from django.conf.urls import include
 
 urlpatterns = [
     path('<int:game_id>/game',views.game,name='game'),
@@ -25,4 +26,5 @@ urlpatterns = [
     path('login/',views.login,name='login'),
     path('form/',views.form,name='form'),
     path('allgames/',views.allgames,name='allgames'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
