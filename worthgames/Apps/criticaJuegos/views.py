@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from .forms import RegisterFrom
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -49,7 +50,7 @@ def comentario(request,game_id):
         if request.POST['resp']=='true':
             user = request.POST['userID']
             comentid= request.POST['comentID']
-            ukey =Usuario.objects.get(id=user)
+            ukey =User.objects.get(id=user)
             ckey =Comentario.objects.get(id=comentid)
             comen= request.POST['coment']
             respuestaC= Respuesta(comentario=ckey,usuario=ukey,contenido=comen)
@@ -57,7 +58,7 @@ def comentario(request,game_id):
         else:
             user = request.POST['userID']
             comentid= request.POST['gameID']
-            ukey =Usuario.objects.get(id=user)
+            ukey =User.objects.get(id=user)
             jkey =Juego.objects.get(id=comentid)
             comen= request.POST['coment']
             comentarioCreate= Comentario(juego=jkey,usuario=ukey,contenido=comen)
