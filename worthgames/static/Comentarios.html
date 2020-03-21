@@ -76,6 +76,9 @@ function responder(id){
           <li class="nav-item ">
             <a class="nav-link" href="{% url 'allgames' %}">Juegos </a>
           </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'form' %}">Agregar un Juego </a>
+          </li>
             {% if user.is_authenticated %}
                 <li class="nav-item active" ><a  class="nav-link" >User: {{ user.get_username }}</a></li>
                  <li class="nav-item active" ><a  class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
@@ -83,7 +86,7 @@ function responder(id){
         </ul>
       </div>
       &nbsp;
-      <button type="button" class="btn btn-light">Agregar un Juego</button>
+
     </div>
   </nav>
 
