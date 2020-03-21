@@ -1,18 +1,10 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 fs = FileSystemStorage(location='worthgames/static/images/')
 
-class Usuario(models.Model):
-    id = models.AutoField(primary_key=True)
-    nickname = models.CharField('Nombre', max_length=200)
-    password = models.TextField('Password')
-    correo =models.EmailField('Correo', max_length=100)
-    contacto = models.CharField('contacto', max_length=200)
-    admin = models.BooleanField('Admin', default=False)
-    def __str__(self):
-        return self.nickname
 
 class Juego(models.Model):
     id = models.AutoField(primary_key=True)
@@ -21,17 +13,18 @@ class Juego(models.Model):
     descripcion=models.TextField('descripcion')
     linksGameplay= models.TextField('links')
     image=models.ImageField(storage=fs)
-    created=models.ForeignKey(Usuario,on_delete=models.PROTECT)
+    created=models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
     votantes=models.TextField('votantes')
+    aceptado = models.BooleanField(default=False)
 
 class Comentario(models.Model):
     id = models.AutoField(primary_key=True)
     juego = models.ForeignKey(Juego, null=False, blank=False, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(get_user_model(), null=False, blank=False, on_delete=models.CASCADE)
     contenido = models.TextField('Contenido')
 
 class Respuesta(models.Model):
     id = models.AutoField(primary_key=True)
     comentario = models.ForeignKey(Comentario, null=False, blank=False, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(get_user_model(), null=False, blank=False, on_delete=models.CASCADE)
     contenido = models.TextField('Contenido')
