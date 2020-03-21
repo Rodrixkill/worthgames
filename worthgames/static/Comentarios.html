@@ -35,6 +35,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css' %}">
     <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
 <!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript">
+function responder(id){
+  document.getElementById(id).style.display = 'block'; 
+}
+
+
+
+</script>
 
 </head>
 
@@ -88,20 +98,27 @@
 	<!-- Blog Post -->
         <div class="card mb-2" style="width: 46rem;">
           <div class="card-body">
+		<form action="{% url 'comentario' game_id=game.id %}" method="post">
+                {% csrf_token %}
 		<div class="input-group">
  		 <div class="input-group-prepend">
  		 </div>
-  		<textarea class="form-control" placeholder="Comentar"></textarea>
+                <input type="hidden" id="userID" name="resp" value="false">
+                <input type="hidden" id="userID" name="userID" value="{{user.id}}">
+                <input type="hidden" id="comentID" name="gameID" value="{{game.id}}">
+
+  		<textarea class="form-control" placeholder="Comentar" id="coment" name="coment"></textarea>
 		</div>
 		<h1></h1>
 		<span class="float-right">
 		<button id="image-logo6" class="btn btn-ligh" type="button" padding-right>
 			<h6 >Cancelar</h6>
 		</button>
-		<button id="image-logo7" class="btn btn-lighy" type="button" padding-right>
+		<button id="image-logo7" class="btn btn-lighy" type="submit" padding-right>
 			<h6 style="color:#1E90FF">Comentar</h6>
 		</button>
 		</span>
+               </form>
           </div>
         </div>
 	{% for comentario in comentarios %}
@@ -123,14 +140,41 @@
 	   {{comentario.contenido}}
 	  </p>
 		<span class="float-right">
-		<button id=image-logo" class="btn btn-dark" type="button" padding-right>
+		<button id=image-logo" class="btn btn-dark" type="button"  onclick="responder({{comentario.id}})" padding-right>
 			Responder
 		</button>
 		</span>
           </div>
         </div>
+        <div class="card mb-2" style="width: 46rem;display:none;" id="{{comentario.id}}">
+          <div class="card-body">
+               <form action="{% url 'comentario' game_id=game.id %}" method="post">
+                {% csrf_token %}
+		<div class="input-group">
+ 		 <div class="input-group-prepend">
+ 		 </div>
+                <input type="hidden" id="userID" name="resp" value="true">
+                <input type="hidden" id="userID" name="userID" value="{{user.id}}">
+                <input type="hidden" id="comentID" name="comentID" value="{{comentario.id}}">
+                <input type="hidden" id="gameID" name="gameID" value="{{game.id}}">
+
+  		<textarea class="form-control" placeholder="Comentar" id="coment" name="coment"></textarea>
+		</div>
+		<h1></h1>
+		<span class="float-right">
+		<button id="image-logo6" class="btn btn-ligh" type="button" padding-right>
+			<h6 >Cancelar</h6>
+		</button>
+		<button id="image-logo7" class="btn btn-lighy" type="submit" padding-right>
+			<h6 style="color:#1E90FF">Comentar</h6>
+		</button>
+		</span>
+                <br></br>
+               </form>
+          </div>
+        </div>
 	{% for con in conexion %}
-	<!-- Respuestas -->
+	<!-- Respuestas -->  
         {% ifequal con.0 comentario.id %}
         {% for resp in con.1 %}
 	<span class="float-right">
@@ -150,11 +194,7 @@
            <p class="card-text" >
 	   {{resp.contenido}}
 	  </p>
-		<span class="float-right">
-		<button id="image-logo2" class="btn btn-dark" type="button" padding-right>
-			Responder
-		</button>
-		</span>
+	
           </div>
         </div>
 	</span>
@@ -192,8 +232,6 @@
   </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 
