@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from .forms import RegisterFrom
 from django.contrib.auth.models import User
+from  django import forms
 
 
 # Create your views here.
@@ -30,7 +31,29 @@ def login(request):
 
 @login_required
 def form(request):
-    return render(request,'FormGame.html')
+    if request.POST:
+        user = request.POST['userID']
+        titulo = request.POST['fname']
+        link1 = request.POST['link1']
+        links = 'https://www.youtube.com/embed/' + link1.split('=')[1]
+        link2 = request.POST['link2']
+        if(link2 != ''):
+            links += ',https://www.youtube.com/embed/' + link2.split('=')[1]
+        link3 = request.POST['link3']
+        if (link3 != ''):
+            links += ',https://www.youtube.com/embed/' + link3.split('=')[1]
+        descrip  = request.POST['descrip']
+        ukey = User.objects.get(id=user)
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            imagen = form.cleaned_data['image']
+            juegoCreate = Juego(title=titulo, descripcion=descrip, image=imagen, created=ukey, linksGameplay=links,
+                                puntuacion=0, votantes=0)
+            juegoCreate.save()
+            return redirect('allgames')
+
+    return render(request, 'FormGame.html')
+
 
 @login_required
 def game(request,game_id):
@@ -124,6 +147,10 @@ def search1(query=None):
         for post in posts:
             queryset.append(post)
     return list(set(queryset))
+
+class ImageUploadForm(forms.Form):
+    """Image upload form."""
+    image = forms.ImageField()
 
 
 
