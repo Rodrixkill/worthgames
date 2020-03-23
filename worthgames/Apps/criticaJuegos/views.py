@@ -48,7 +48,7 @@ def form(request):
         if form.is_valid():
             imagen = form.cleaned_data['image']
             juegoCreate = Juego(title=titulo, descripcion=descrip, image=imagen, created=ukey, linksGameplay=links,
-                                puntuacion=0, votantes=0)
+                                puntuacion=0)
             juegoCreate.save()
             return redirect('allgames')
 
