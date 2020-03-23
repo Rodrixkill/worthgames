@@ -57,6 +57,77 @@ def form(request):
 
 @login_required
 def game(request,game_id):
+    if request.POST:
+        if request.POST['voto']=='+':
+            usuario=request.POST['usuarioid']
+            juego=request.POST['id']
+            game = Juego.objects.get(pk=juego)
+            listaDeVotantes=game.votantes.split(",")
+            pos="+"+str(usuario)
+            neg="-"+str(usuario)
+            votantesNuevo=""
+            if pos in listaDeVotantes:
+                print("correcto")
+                votantesNuevo=game.votantes
+            elif neg in listaDeVotantes:
+                for i in listaDeVotantes:
+                    if i==neg:
+                        votantesNuevo=votantesNuevo+","+pos
+                    else:
+                        votantesNuevo=votantesNuevo+","+i
+            else:
+                votantesNuevo=game.votantes+",+"+str(usuario)
+            listaNueva=votantesNuevo.split(",")
+            positivos=0
+            negativos=0
+            count=len(listaNueva)
+            for i in listaNueva:
+                if len(i)<1:
+                    count-=1
+                elif i[0]=="+":
+                    positivos+=1
+                elif i[0]=="-":
+                    negativos+=1
+            puntuacionCambiada=0
+            if count>1:
+                puntuacionCambiada=(positivos*10) / count
+            nuevaPuntuacion= Juego.objects.filter(pk=juego).update(puntuacion=puntuacionCambiada)
+            game = Juego.objects.filter(pk=juego).update(votantes=votantesNuevo)
+        elif request.POST['voto']=='-':
+            usuario=request.POST['usuarioid']
+            juego=request.POST['id']
+            game = Juego.objects.get(pk=juego)
+            listaDeVotantes=game.votantes.split(",")
+            pos="+"+str(usuario)
+            neg="-"+str(usuario)
+            votantesNuevo=""
+            if pos in listaDeVotantes:
+                for i in listaDeVotantes:
+                    if i==pos:
+                        votantesNuevo=votantesNuevo+","+neg
+                    else:
+                        votantesNuevo=votantesNuevo+","+i
+            elif neg in listaDeVotantes:
+                votantesNuevo=game.votantes
+            else:
+                votantesNuevo=game.votantes+",-"+str(usuario)
+            listaNueva=votantesNuevo.split(",")
+            positivos=0
+            negativos=0
+            count=len(listaNueva)
+            print(listaNueva)
+            for i in listaNueva:
+                if len(i)<1:
+                    count-=1
+                elif i[0]=="+":
+                    positivos+=1
+                elif i[0]=="-":
+                    negativos+=1
+            puntuacionCambiada=0
+            if count>1:
+                puntuacionCambiada=(positivos*10) / count
+            nuevaPuntuacion= Juego.objects.filter(pk=juego).update(puntuacion=puntuacionCambiada)
+            game = Juego.objects.filter(pk=juego).update(votantes=votantesNuevo)
     obj = Juego.objects.get(pk=game_id)
     return render(request,'game2.html',{'game': obj })
 

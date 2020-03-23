@@ -193,7 +193,7 @@ function responder(id){
 	  
             <strong class="card-title"> {{resp.usuario}}</strong>
 		<span class="float-right">
-                {% ifequal user.id comentario.usuario.id %}
+                {% ifequal user.id resp.usuario.id %}
                 <form action="{% url 'deleteG' game_id=game.id %}" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" id="type" name="type" value="respuesta">
