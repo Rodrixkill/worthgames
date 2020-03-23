@@ -113,11 +113,24 @@
                        {{ game.descripcion }}
                     </p>
                     <br>
-                    <i class="fa fa-thumbs-up fa-2x"></i>
-                    &nbsp;
-                    <i class="fa fa-thumbs-down fa-2x"></i>
+                            <div class="row">
+                    <form action="{% url 'game' game_id=game.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="idUsuario" name="usuarioid" value="{{user.id}}">
+                        <input type="hidden" id="val1" name="id" value="{{game.id}}">
+                        <input type="hidden" id="voto" name="voto" value="+">
+                        <button  type="submit" class="btn btn-primary"> <i class="fa fa-thumbs-up fa-2x"></i></button>
+                    </form>
+                        &nbsp;
+                    <form action="{% url 'game' game_id=game.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="type2" name="usuarioid" value="game">
+                        <input type="hidden" id="val2" name="id" value="{{game.id}}">
+                        <input type="hidden" id="voto1" name="voto" value="-">
+                        <button  type="submit" class="btn btn-primary"> <i class="fa fa-thumbs-down fa-2x"></i></i></button>
+                    </form>
+                            </div>
                     <a href="{% url 'comentario' game_id=game.id %}" class="btn btn-outline-dark float-right">Comentarios</a>
-		    &nbsp;
 		    <a href="{% url 'gameplay' game_id=game.id %}" class="btn btn-outline-dark float-right">Gameplays </a>
                     </div>
 
