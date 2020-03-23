@@ -48,7 +48,7 @@ def form(request):
         if form.is_valid():
             imagen = form.cleaned_data['image']
             juegoCreate = Juego(title=titulo, descripcion=descrip, image=imagen, created=ukey, linksGameplay=links,
-                                puntuacion=0)
+                                puntuacion=10, votantes='+5')
             juegoCreate.save()
             return redirect('allgames')
 
@@ -90,7 +90,7 @@ def game(request,game_id):
                     negativos+=1
             puntuacionCambiada=0
             if count>1:
-                puntuacionCambiada=(positivos*10) / count
+                puntuacionCambiada=round((positivos*10) / count,1)
             nuevaPuntuacion= Juego.objects.filter(pk=juego).update(puntuacion=puntuacionCambiada)
             game = Juego.objects.filter(pk=juego).update(votantes=votantesNuevo)
         elif request.POST['voto']=='-':
@@ -125,11 +125,12 @@ def game(request,game_id):
                     negativos+=1
             puntuacionCambiada=0
             if count>1:
-                puntuacionCambiada=(positivos*10) / count
+                puntuacionCambiada=round((positivos*10) / count,1)
             nuevaPuntuacion= Juego.objects.filter(pk=juego).update(puntuacion=puntuacionCambiada)
             game = Juego.objects.filter(pk=juego).update(votantes=votantesNuevo)
     obj = Juego.objects.get(pk=game_id)
-    return render(request,'game2.html',{'game': obj })
+    numeroDeVotantes = obj.votantes.count('-') + obj.votantes.count('+')
+    return render(request,'game2.html',{'game': obj , 'cant':numeroDeVotantes})
 
 @login_required
 def gameplay(request,game_id):

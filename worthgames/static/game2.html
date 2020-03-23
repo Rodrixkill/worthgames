@@ -87,13 +87,19 @@
                     <div class="card-block">
                         <div class="card-header">
                             <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
+                                <p style="margin-top: 30px;">
+                                   Votantes: {{cant}}
+                                </p>
+                                &nbsp;&nbsp;&nbsp;
                     {% if game.puntuacion >= 5 %}
                                 <div class="puntaje-good">
                     {% else %}
                                 <div class="puntaje-bad">
                                 {% endif %}
 
-                                    <a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
+                                    <a style="color: white; font-size: 40px; end-size: 40px;" >
+                                         {{game.puntuacion}}
+                                    </a>
                                 </div>
                                 &nbsp;
                                {% ifequal user.id game.created.id %}
