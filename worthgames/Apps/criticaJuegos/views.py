@@ -67,6 +67,27 @@ def gameplay(request,game_id):
     return render(request,'Gameplays.html',{'game': obj,'links':string })
 
 @login_required
+def deleteG(request,game_id):
+    result="No existe solicitud"
+    if request.POST:
+        if request.POST['type']=='game':
+            val=request.POST['val']
+            delete=Juego.objects.get(pk=val).delete()
+            result="Juego eliminado con exito"
+        elif request.POST['type']=='coment':
+            val=request.POST['val']
+            delete=Comentario.objects.get(pk=val).delete()
+            result="Comentario eliminado con exito"
+        elif request.POST['type']=='respuesta':
+            val=request.POST['val']
+            delete=Respuesta.objects.get(pk=val).delete()
+            result="Respuesta eliminado con exito"
+        else:
+            result="datos enviados incorrectos"
+    return render(request,'errors.html',{'error':result})
+
+
+@login_required
 def comentario(request,game_id):
     if request.POST:
         juegoid= request.POST['gameID']

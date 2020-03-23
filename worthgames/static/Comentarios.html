@@ -134,12 +134,16 @@ function responder(id){
           <div class="card-body">
             <strong class="card-title">{{comentario.usuario}}</strong>
 		<span class="float-right">
-		<button class="btn btn-light" type="button">
+                {% ifequal user.id comentario.usuario.id %}
+                <form action="{% url 'deleteG' game_id=game.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id="type" name="type" value="coment">
+                                <input type="hidden" id="val" name="val" value="{{comentario.id}}">
+		<button class="btn btn-light" type="submit">
 			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
-		<button class="btn btn-light" type="button" >
-			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
-		</button>
+                </form>
+                {% endifequal %}
 		</span>
 	<br></br>
            <p class="card-text">
@@ -189,12 +193,16 @@ function responder(id){
 	  
             <strong class="card-title"> {{resp.usuario}}</strong>
 		<span class="float-right">
-		<button class="btn btn-light" type="button">
+                {% ifequal user.id comentario.usuario.id %}
+                <form action="{% url 'deleteG' game_id=game.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id="type" name="type" value="respuesta">
+                                <input type="hidden" id="val" name="val" value="{{resp.id}}">
+		<button class="btn btn-light" type="submit">
 			<img src="{% static 'images/icons/trash.svg' %}" alt="" width="30" height="25" title="Bootstrap">
 		</button>
-		<button id="image-logo" class="btn btn-light" type="button" padding-right>
-			<img src="{% static 'images/icons/pencil.svg' %}" alt="" width="30" height="25" title="Bootstrap">
-		</button>
+                </form>
+		{% endifequal %}
 		</span>
           <br></br>
            <p class="card-text" >
@@ -213,10 +221,13 @@ function responder(id){
       </div>
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
+         <a href="{% url 'game' game_id=game.id %}" class="btn btn-outline-dark float-right">Juego</a>
+              &nbsp;
+             <a href="{% url 'gameplay' game_id=game.id %}" class="btn btn-outline-dark float-right">Gameplays </a>
         <!--Juego -->
         <div class="card my-4">
           <h5 class="card-header">{{game.title}}</h5>
-          <div class="card-body">
+		<div class="card-body">
             {{game.descripcion}}
           </div>
         </div>

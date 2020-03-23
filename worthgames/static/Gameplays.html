@@ -92,6 +92,7 @@
 	</center>
 	
 	<!-- Blog Post -->
+        {% if links %}
         {% for link in links %}
         <div class="card mb-4">
           <div class="embed-responsive embed-responsive-16by9">
@@ -99,11 +100,21 @@
 	  </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="card mb-4">
+         <p>
+            Este juego no tiene ningun gameplay
+         </p>
+        </div>
+        {% endif %}
 
       </div>
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
+        <a href="{% url 'game' game_id=game.id %}" class="btn btn-outline-dark float-right">Juego</a>
+         &nbsp;
+        <a href="{% url 'comentario' game_id=game.id %}" class="btn btn-outline-dark float-right">Comentarios </a>
         <!--Juego -->
         <div class="card my-4">
           <h5 class="card-header">{{game.title}}</h5>
