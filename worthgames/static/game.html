@@ -62,6 +62,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'form' %}">Agregar un Juego </a>
                 </li>
+                {% if user.is_staff %}
+                 <li class="nav-item active" ><a  class="nav-link" href="{% url 'acceptGame'  %}">Admin</a></li>
+               {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item active" ><a  class="nav-link" >User: {{ user.get_username }}</a></li>
                  <li class="nav-item active" ><a  class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
@@ -73,47 +76,49 @@
 
       <div class="container">
      {% for game in games %}
-        <div class="row">
-        <div class="card float-right">
+          {% if game.aceptado %}
             <div class="row">
-                <div class="col-md-3">
-                    <img class="d-block w-100" src="{{game.image.path}}" alt="">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-block">
-                        <div class="card-header">
-                            <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
-                    {% if game.puntuacion >= 5 %}
-                                <div class="puntaje-good">
-                    {% else %}
-                                <div class="puntaje-bad">
-                                {% endif %}
+            <div class="card float-right">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="d-block w-100" src="{{game.image.path}}" alt="">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-block">
+                            <div class="card-header">
+                                <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
+                        {% if game.puntuacion >= 5 %}
+                                    <div class="puntaje-good">
+                        {% else %}
+                                    <div class="puntaje-bad">
+                                    {% endif %}
 
-                                    <a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
+                                        <a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
+                                    </div>
+                                    &nbsp;
+                                    <button  type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i></button>
+                                    &nbsp;
+                                    <button  type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
                                 </div>
-                                &nbsp;
-                                <button  type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i></button>
-                                &nbsp;
-                                <button  type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+                                <a href="{% url 'game' game_id=game.id %}"><h2 class="card-title">{{game.title}}</h2></a>
                             </div>
-                            <a href="{% url 'game' game_id=game.id %}"><h2 class="card-title">{{game.title}}</h2></a>
+
+                        <!--<h4 class="card-title">Small card</h4> -->
+                        <p style="margin-top: 30px;">
+                           {{ game.descripcion }}
+                        </p>
+                        <br>
+                        <i class="fa fa-thumbs-up fa-2x"></i>
+                        &nbsp;
+                        <i class="fa fa-thumbs-down fa-2x"></i>
                         </div>
 
-                    <!--<h4 class="card-title">Small card</h4> -->
-                    <p style="margin-top: 30px;">
-                       {{ game.descripcion }}
-                    </p>
-                    <br>
-                    <i class="fa fa-thumbs-up fa-2x"></i>
-                    &nbsp;
-                    <i class="fa fa-thumbs-down fa-2x"></i>
                     </div>
-
                 </div>
             </div>
-        </div>
-        <br />
-        </div>
+            <br />
+            </div>
+          {% endif %}
      {% endfor %}
         <!-- row -->
     </div>

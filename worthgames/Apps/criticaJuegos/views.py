@@ -52,7 +52,7 @@ def form(request):
             juegoCreate.save()
             return redirect('allgames')
 
-    return render(request, 'FormGame.html')
+    return render(request, 'formGame.html')
 
 
 @login_required
@@ -115,6 +115,21 @@ def allgames(request):
         
     return render(request,'game.html', {'games' : games,'query':query})
 
+@login_required
+def acceptGame(request):
+    if request.POST:
+        if request.POST['accion'] == 'aceptar':
+          juegoid = request.POST['gameID']
+          juego = Juego.objects.get(pk=juegoid)
+          juego.aceptado = 1
+          juego.save()
+        if request.POST['accion'] == 'borrar':
+          juegoid = request.POST['gameID']
+          juego = Juego.objects.get(pk=juegoid)
+          juego.delete()
+
+    games = Juego.objects.all()
+    return render(request,'acceptGame.html',{'games': games })
 
 def search1(query=None):
     queryset = []

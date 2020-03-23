@@ -2,10 +2,10 @@
 {% load static %}
 <html lang="en">
 <head>
-	<title>Game</title>
+	<title>Admin Games</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -17,13 +17,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
@@ -33,144 +33,124 @@
 <!--===============================================================================================-->
 </head>
 <body>
-    <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">	
-	<img src="{% static 'images/logo.png' %}" alt="Descripción de esta maravillosa imagen">
-          <div class="card-body">
-            <form action="{% url 'allgames' %}" method="get">
+    <div class="allButFooter">
+        <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+        <img src="{% static 'images/logo.png' %}" alt="Descripción de esta maravillosa imagen">
+              <div class="card-body">
+                <form method="get">
                 <div class="input-group">
-                 
+
                   <input type="text" class="form-control" placeholder="Buscar" name="q" id="id_q">
                   <span class="input-group-btn">
                      <button class="btn btn-secondary" type="submit" >
                          <img src="{% static 'images/icons/Search.svg' %}" alt="" width="30" height="20" title="Bootstrap">
              	     </button>
-                 
                   </span>
                 </div>
                </form>
-          </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Juegos 
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">Gameplayes </a>
-		<span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Comentarios </a>
-          </li>
-            {% if user.is_authenticated %}
+              </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item ">
+               <a class="nav-link" href="{% url 'allgames' %}">Juegos </a>
+              </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'form' %}">Agregar un Juego </a>
+                </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item active" ><a  class="nav-link" >User: {{ user.get_username }}</a></li>
                  <li class="nav-item active" ><a  class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container">  
-    <div class="row">
-        <h1>Juegos que la comunidad quiere crear</h1>
-        <div class="card float-right">
-            <br>
-            <div class="row">
-                <div class="col-md-3">
-                    <img class="d-block w-100" src="images/juego.jpg" alt="">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-block">
-                        <div class="card-header">
-                            <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
-                                <div class="puntaje-good">
-                                    <a style="color: white; font-size: 40px;"><i class="fa fa-check"></i></a>
-                                </div>
-                                &nbsp;
-                                <div class="puntaje-bad">
-                                    <a style="color: white; font-size: 40px;"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <h2 class="card-title">World of Warcraft</h2>
-                        </div>
-                    
-                    <!--<h4 class="card-title">Small card</h4> -->
-                    <p style="margin-top: 30px;">
-                        World of Warcraft: Classic es un homenaje a sus quince años de vida, un producto que el pueblo llevaba pidiendo desde hace un lustro pero que la empresa californiana se cerraba en banda a ofrecer. Es la vuelta a aquellos recuerdos que nuestro cerebro se resigna a borrar incluso ahora que la mayoría de los que jugamos al original somos padres de familia. Una celebración por todo lo alto en la que se quiere demostrar que un videojuego como este puede seguir siendo válido más de una década después.
-    
-                        Blizzard ha hecho uso de la ingeniería inversa para meter toda la base de datos del videojuego base así como el material gráfico en el cliente de World of Warcraft: Legión haciendo que este sea prácticamente igual al original. Datos, que por cierto, proceden del parche 1.12 de nombre Drums of War. Esto significa que la propuesta de Classic no es tal si no que se basa en la última actualización que recibió el juego antes del lanzamiento de la expansión The Burning Crusade.    
-                    </p>
-                    </div>
-                    <h2>Gameplays</h2>
-                    <br>
-                    <div class="card mb-9">
-                        <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/c95JR3gYECY?rel=0" allowfullscreen></iframe>
-                        </div>
-                        <div class="card-body">
-                          <h3 class="card-title">100% BEST SKIN IN LEAGUE!!</h3>
-                          <p class="card-text">
-                      Redmerci jugando con la nueva skin de Talon-RPG Talon Blackwood 
-                          </p>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
+            </ul>
+          </div>
         </div>
+      </nav>
 
-        <div class="card float-right">
-            <div class="row">
-                <div class="col-md-3">
-                    <img class="d-block w-100" src="images/juego2.jpg" alt="">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-block">
-                        <div class="card-header">
-                            <div  class="btn-group" role="group" aria-label="First group" style="float:right;">
-                                <div class="puntaje-good">
-                                    <a style="color: white; font-size: 40px;"><i class="fa fa-check"></i></a>
-                                </div>
-                                &nbsp;
-                                <div class="puntaje-bad">
-                                    <a style="color: white; font-size: 40px;"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <h2 class="card-title">League of Legends</h2>
-                        </div>
-                    
-                    <!--<h4 class="card-title">Small card</h4> -->
-                    <p style="margin-top: 30px;">
-                        League of Legends is a team-based strategy game where two teams of five powerful champions face off to destroy the other’s base. Choose from over 140 champions to make epic plays, secure kills, and take down towers as you battle your way to victory.
-                    </p>
-                    </div>
-    
-                </div>
-            </div>
-        </div>
+      <div class="container">
+     {% for game in games %}
+		  {% if not game.aceptado %}
+			<div class="row">
+			<div class="card float-right">
+				<div class="row">
+					<div class="col-md-3">
+						<img class="d-block w-100" src="{{game.image.path}}" alt="">
+					</div>
+					<div class="col-md-7">
+						<div class="card-block">
+							<div class="card-header">
+								<div  class="btn-group" role="group" aria-label="First group" style="float:right;">
+						{% if game.puntuacion >= 5 %}
+									<div class="puntaje-good">
+						{% else %}
+									<div class="puntaje-bad">
+									{% endif %}
+
+										<a style="color: white; font-size: 40px;">{{game.puntuacion}}</a>
+									</div>
+									&nbsp;
+									&nbsp
+								</div>
+								<h2 class="card-title">{{game.title}}</h2>
+							</div>
+
+						<!--<h4 class="card-title">Small card</h4> -->
+						<p style="margin-top: 30px;">
+						   {{ game.descripcion }}
+						</p>
+						<p style="margin-top: 30px;">
+						    Links: {{ game.linksGameplay }}
+						</p>
+						<br>
+							<div class="row">
+						 <form action="{% url 'acceptGame'  %}" method="post">
+							 {% csrf_token %}
+							 <input type="hidden" id="gameID" name="gameID" value="{{game.id}}">
+							 <input type="hidden" id="Accion1" name="accion" value="aceptar">
+							<button type="submit" class="btn btn-info">Aceptar</i></button>
+						 </form>
+								&nbsp;&nbsp;&nbsp;
+						 <form action="{% url 'acceptGame'  %}" method="post">
+							 {% csrf_token %}
+							 <input type="hidden" id="gameID2" name="gameID" value="{{game.id}}">
+							 <input type="hidden" id="Accion2" name="accion" value="borrar">
+								<button type="submit" class="btn btn-danger">Borrar</i></button>
+
+						  </form>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<br />
+			</div>
+			{% endif %}
+     {% endfor %}
+        <!-- row -->
     </div>
-    <!-- row -->
-</div>
+  </div>
+ </div>
 <!-- /.container -->
 <!-- Footer -->
-<div>
-<footer class="py-5 bg-dark">
-    <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; WorthGames 2020</p>
-    </div>
-    <!-- /.container -->
-</footer>
-</div>
+
+    <footer class="py-5 bg-dark" >
+        <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; WorthGames 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
 
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>    
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript">
+  document.getElementById("id_q").value="{{query}}"
+</script>
 
 </body>
 </html>
