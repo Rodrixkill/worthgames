@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from .forms import RegisterFrom
 from django.contrib.auth.models import User
 from  django import forms
+from django.db.models import Case, When, Value, IntegerField
 
 
 # Create your views here.
@@ -201,11 +202,19 @@ def allgames(request):
     if request.GET:
         query = request.GET['q']
         search = str(query)
+
     if search == "":
         games = Juego.objects.all()
     else:
         games = search1(search)
-        
+
+    if request.POST:
+        order= request.POST['order_by']
+        if order == "puntuacion":
+            games = Juego.objects.all().order_by('-puntuacion')    
+        elif order == "votos":
+            games = sorted(Juego.objects.all(), key=lambda n: -len(n.votantes.split(",")))  
+    
     return render(request,'game.html', {'games' : games,'query':query})
 
 @login_required
