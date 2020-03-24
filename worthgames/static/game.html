@@ -72,9 +72,22 @@
             </ul>
           </div>
         </div>
+        
       </nav>
+      <form action="{% url 'allgames' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="order_by" name="order_by" value="puntuacion">
+                        <button  type="submit" class="btn btn-outline-dark float-right">Ordenar por puntuaci&oacute;n</button>
+                    </form>
+      <form action="{% url 'allgames' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="order_by" name="order_by" value="votos">
+                        <button  type="submit" class="btn btn-outline-dark float-right">Ordenar por votos</button>
+                    </form>
+      
 
       <div class="container">
+      <br></br>
      {% for game in games %}
           {% if game.aceptado %}
             <div class="row">
