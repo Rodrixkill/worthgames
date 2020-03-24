@@ -74,6 +74,7 @@
         </div>
         
       </nav>
+        
       <form action="{% url 'allgames' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" id="order_by" name="order_by" value="puntuacion">
@@ -84,7 +85,7 @@
                         <input type="hidden" id="order_by" name="order_by" value="votos">
                         <button  type="submit" class="btn btn-outline-dark float-right">Ordenar por votos</button>
                     </form>
-      
+
 
       <div class="container">
       <br></br>
