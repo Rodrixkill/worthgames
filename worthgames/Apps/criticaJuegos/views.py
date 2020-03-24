@@ -224,6 +224,12 @@ def acceptGame(request):
     games = Juego.objects.all()
     return render(request,'acceptGame.html',{'games': games })
 
+def error404(request, exception):
+    return render(request,'404.html', status=404)
+
+def error500(request):
+    return render(request,'500.html', status=500)
+
 def search1(query=None):
     queryset = []
     queries = query.split(" ")

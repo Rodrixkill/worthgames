@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from .views import views
 from django.conf.urls import include
+from django.conf.urls import handler404, handler500
+
+handler404 = views.error404
+handler500 = views.error500
 
 urlpatterns = [
     path('<int:game_id>/game',views.game,name='game'),

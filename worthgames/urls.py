@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from worthgames.Apps.criticaJuegos import views
 from django.conf.urls import include
+from django.conf.urls import handler404, handler500
 
+handler404 = views.error404
+handler500 = views.error500
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('game/<game_id>/',views.game,name='game'),
@@ -28,7 +31,7 @@ urlpatterns = [
     path('form/',views.form,name='form'),
     path('acceptGame/',views.acceptGame,name='acceptGame'),
     path('deleteG/<game_id>',views.deleteG,name='deleteG'),
-    path('allgames/',views.allgames,name='allgames'),			
+    path('allgames/',views.allgames,name='allgames'),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]
