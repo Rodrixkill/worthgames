@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
@@ -10,7 +11,6 @@ from django.contrib.auth.models import User
 from  django import forms
 from django.db.models import Case, When, Value, IntegerField
 
-
 # Create your views here.
 def index(request):
     return HttpResponse("Hello World")
@@ -20,7 +20,7 @@ def register(request):
         form = RegisterFrom(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/login')
+            messages.success(request, "Se registro correctamente")
     else:
         form = RegisterFrom()
     return render(request, 'registration/register.html', {
@@ -51,7 +51,7 @@ def form(request):
             juegoCreate = Juego(title=titulo, descripcion=descrip, image=imagen, created=ukey, linksGameplay=links,
                                 puntuacion=10, votantes='+5')
             juegoCreate.save()
-            return redirect('allgames')
+            messages.success(request, "El juego se añadió correctamente, Espere a que un admin lo acepte")
 
     return render(request, 'formGame.html')
 
@@ -213,9 +213,10 @@ def allgames(request):
         if order == "puntuacion":
             games = Juego.objects.all().order_by('-puntuacion')    
         elif order == "votos":
-            games = sorted(Juego.objects.all(), key=lambda n: -len(n.votantes.split(",")))  
-    
+            games = sorted(Juego.objects.all(), key=lambda n: -len(n.votantes.split(",")))
+
     return render(request,'game.html', {'games' : games,'query':query})
+
 
 @login_required
 def acceptGame(request):
@@ -238,6 +239,7 @@ def error404(request, exception):
 
 def error500(request):
     return render(request,'500.html', status=500)
+
 
 def search1(query=None):
     queryset = []

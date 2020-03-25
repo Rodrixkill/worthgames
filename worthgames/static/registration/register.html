@@ -32,12 +32,20 @@
 <!--===============================================================================================-->
 </head>
 <body style="background-color: #999999;">
-	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="login100-more" style="background-image: url('{% static 'images/background1.jpg' %}');"></div>
 
+
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+					{% for message in messages %}
+				  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+					{{ message }}
+				  </div>
+				{% endfor %}
 				<form method="POST"  class="login100-form validate-form">
 					<span class="login100-form-title p-b-59">
 						Registro
